@@ -1,0 +1,34 @@
+<form [formGroup]="createTaskForm" (ngSubmit)="onSubmit()">
+    <label>
+        Name:
+        <input type="text" formControlName="name">
+        <div
+            *ngIf="createTaskForm.get('name').invalid && ( createTaskForm.get('name').touched || createTaskForm.get('name').dirty )">
+            <strong *ngIf="createTaskForm.get('name').errors?.required">This filed is required, </strong>
+            <strong
+                *ngIf="createTaskForm.get('name').errors?.firstLetterUppercase">{{createTaskForm.get('name').errors?.firstLetterUppercase}},
+            </strong>
+            <strong
+                *ngIf="createTaskForm.get('name').errors?.leadingOrTrailingWhitespace">{{createTaskForm.get('name').errors?.leadingOrTrailingWhitespace}},
+            </strong>
+        </div>
+    </label>
+    <div>
+        <label>
+            Tags:
+            <button type="button" (click)="addNewTag()">Add new</button>
+
+            <div formArrayName="tags" *ngFor="let tagCtrl of tagCtrls.controls; let i = index;">
+                <label>Tag {{i + 1}}</label>
+                <input type="text" [formControlName]="i">
+                <ng-container *ngIf="getErrors(i)">
+                    <strong *ngIf="getErrors(i).minlength">
+                        Minimum {{getErrors(i).minlength.requiredLength}} length,
+                    </strong>
+                    <strong *ngIf="getErrors(i).forbiddenUppercase">Forbidden Uppercase</strong>
+                </ng-container>
+            </div>
+        </label>
+    </div>
+    <button type="submit" [disabled]="!createTaskForm.valid">Submit</button>
+</form>

@@ -1,0 +1,21 @@
+<ul class="nav justify-content-center">
+    <ng-container *ngIf="isAuth">
+        <li class="nav-item">
+            <button routerLink="/task">Task</button>
+        </li>
+        <li class="nav-item">
+            <button routerLink="/task/create">create Task</button>
+        </li>
+        <li class="nav-item">
+            <button (click)="logout()">Log out</button>
+        </li>
+    </ng-container>
+    <ng-container *ngIf="!isAuth">
+        <li class="nav-item">
+            <button routerLink="/login">Log in</button>
+        </li>
+        <li class="nav-item">
+            <button routerLink="/signup">Sign up</button>
+        </li>
+    </ng-container>
+</ul>

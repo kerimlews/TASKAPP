@@ -1,0 +1,45 @@
+<div *ngIf="isOpenDeleteModal" style="border: 1px solid black;">
+    <strong>Do you wanna delete {{task.name}} task ? </strong>
+    <div>
+        <button type="button" (click)="deleteTask()" style="background-color: red;">
+            Yes
+        </button>
+        <button type="button" (click)="toggleDeleteModal()">No</button>
+    </div>
+</div>
+
+<form [formGroup]="editTaskForm" (ngSubmit)="onSubmit()">
+    <button type="button" (click)="toggleDeleteModal()">Delete</button>
+    <label>
+        Name:
+        <input type="text" formControlName="name">
+        <div
+            *ngIf="editTaskForm.get('name').invalid && ( editTaskForm.get('name').touched || editTaskForm.get('name').dirty )">
+            <strong *ngIf="editTaskForm.get('name').errors?.required">This filed is required, </strong>
+            <strong
+                *ngIf="editTaskForm.get('name').errors?.firstLetterUppercase">{{editTaskForm.get('name').errors?.firstLetterUppercase}},
+            </strong>
+            <strong
+                *ngIf="editTaskForm.get('name').errors?.leadingOrTrailingWhitespace">{{editTaskForm.get('name').errors?.leadingOrTrailingWhitespace}},
+            </strong>
+        </div>
+    </label>
+    <div>
+        <label>
+            Tags:
+            <button type="button" (click)="addNewTag()">Add new</button>
+
+            <div formArrayName="tags" *ngFor="let tagCtrl of tagCtrls.controls; let i = index;">
+                <label>Tag {{i + 1}}</label>
+                <input type="text" [formControlName]="i">
+                <ng-container *ngIf="getErrors(i)">
+                    <strong *ngIf="getErrors(i).minlength">
+                        Minimum {{getErrors(i).minlength.requiredLength}} length,
+                    </strong>
+                    <strong *ngIf="getErrors(i).forbiddenUppercase">Forbidden Uppercase</strong>
+                </ng-container>
+            </div>
+        </label>
+    </div>
+    <button type="submit" [disabled]="!editTaskForm.valid">Submit</button>
+</form>

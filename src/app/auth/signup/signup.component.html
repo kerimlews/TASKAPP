@@ -1,0 +1,20 @@
+<p>Signup form</p>
+
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <strong *ngIf="error">{{error}}</strong>
+    <label>
+        Email:
+        <input type="text" formControlName="email">
+    </label>
+    <label>
+        Password:
+        <input type="password" formControlName="password">
+    </label>
+    <label>
+        Role:
+        <select formControlName="role">
+            <option *ngFor="let r of roles" [ngValue]="r">{{r}}</option>
+        </select>
+    </label>
+    <button type="submit" [disabled]="!signupForm.valid">Submit</button>
+</form>
