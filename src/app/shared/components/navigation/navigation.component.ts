@@ -20,7 +20,9 @@ export class NavigationComponent implements OnInit {
   get isAuth(): boolean {
     return this.auth.isAuthenticated();
   }
-
+  get isAdmin(): boolean {
+    return this.auth.isAdmin();
+  }
   logout() {
     this.auth.removeToken();
     this.router.navigateByUrl('/login');

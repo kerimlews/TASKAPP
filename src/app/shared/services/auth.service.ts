@@ -7,7 +7,7 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class AuthService {
-  readonly TOKEN = 'token';
+  private readonly TOKEN = 'token';
 
   constructor(
     private userService: UserService

@@ -6,6 +6,7 @@ import { AuthService } from './services/auth.service';
 import { TaskService } from './services/task.service';
 import { RouterModule } from '@angular/router';
 import { UserService } from './services/user.service';
+import { AdminGuardService } from './services/admin-guard.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { UserService } from './services/user.service';
   ],
   providers: [
     AuthGuardService,
+    AdminGuardService,
     AuthService,
     TaskService,
     UserService

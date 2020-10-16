@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { AdminGuardService } from './shared/services/admin-guard.service';
 import { AuthGuardService as AuthGuard } from './shared/services/auth-guard.service';
 
 
@@ -19,12 +20,12 @@ const routes: Routes = [
   },
   {
     path: 'task/create',
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuardService],
     loadChildren: () => import('./pages/create-task/create-task.module').then(m => m.CreateTaskModule)
   },
   {
     path: 'task/edit/:id',
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuardService],
     loadChildren: () => import('./pages/edit-task/edit-task.module').then(m => m.EditTaskModule)
   },
   {

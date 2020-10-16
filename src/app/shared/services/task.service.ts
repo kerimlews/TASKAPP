@@ -64,7 +64,7 @@ export class TaskService {
 
   filterTasks(name: string = '', tags: string[]) {
     if (name.length === 0 && tags.length === 0) {
-      return this.tasks;
+      return this.getAll();
     }
 
     return this.getAll().filter((task: Task) =>
