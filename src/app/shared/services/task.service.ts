@@ -16,8 +16,7 @@ export class TaskService {
   ) { }
 
   private get tasks(): Task[] {
-    const items = JSON.parse(localStorage.getItem('tasks')) || [];
-    return items.filter((task: Task) => task.userId === this.authService.token);
+    return JSON.parse(localStorage.getItem('tasks')) || [];
   }
   private set tasks(tasks: Task[]) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -48,7 +47,7 @@ export class TaskService {
   }
 
   getAll() {
-    return this.tasks;
+    return this.tasks.filter((t: Task) => t.userId === this.authService.token);
   }
 
   get(id: string) {
@@ -68,7 +67,7 @@ export class TaskService {
       return this.tasks;
     }
 
-    return this.tasks.filter((task: Task) =>
+    return this.getAll().filter((task: Task) =>
       (name.length > 0 && task.name.toLowerCase().includes(name.trim().toLowerCase())) ||
       task.tags.some(t => tags.includes(t)));
   }
