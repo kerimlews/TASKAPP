@@ -20,9 +20,11 @@ export class AppComponent implements OnInit {
   }
 
   initiateUsers() {
-    if (this.userService.users) { return; }
-    const id = uuidv4();
     const email = 'admin@maus.ba';
+
+    if (this.userService.findByEmail(email)) { return; }
+
+    const id = uuidv4();
     const password = 'Testpass1';
     const roles = [ERoles.Admin];
 

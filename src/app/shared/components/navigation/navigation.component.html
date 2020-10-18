@@ -1,10 +1,10 @@
 <ul class="nav justify-content-center">
     <ng-container *ngIf="isAuth">
         <li class="nav-item">
-            <button routerLink="/task">Task</button>
+            <a routerLink="/task">Task</a>
         </li>
         <li class="nav-item" *ngIf="isAdmin">
-            <button routerLink="/task/create">create Task</button>
+            <a routerLink="/task/create">Create task</a>
         </li>
         <li class="nav-item">
             <button (click)="logout()">Log out</button>

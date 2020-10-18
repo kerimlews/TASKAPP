@@ -6,3 +6,26 @@
 table, thead, tbody, td, th {
     border: 1px solid gray;
 }
+
+.filters {
+    border: 1px solid gray;
+    padding: 10px;
+}
+
+.tag {
+    cursor: pointer;
+
+    &:hover {
+        background-color: cornsilk; 
+    }
+}
+
+.table-wrapper {
+    display: inline-block;
+    margin-right: 98px;
+    margin-top: 21px;
+
+    strong {
+        margin-bottom: 5px;
+    }
+}

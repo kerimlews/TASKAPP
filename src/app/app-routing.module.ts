@@ -29,8 +29,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/edit-task/edit-task.module').then(m => m.EditTaskModule)
   },
   {
-    path: '**',
-    redirectTo: '',
+    path: '',
+    redirectTo: '/task',
     pathMatch: 'full'
   },
 ];
